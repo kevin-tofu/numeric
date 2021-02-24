@@ -1,3 +1,7 @@
+//Copyright © 2010- Kohei-tofu. All rights reserved.
+//koheitech001 [at] gmail.com
+
+
 #pragma once
 
 #include <math.h>

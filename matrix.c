@@ -1,12 +1,5 @@
-/// <summary>
-/// class : matrix
-/// name  : �n� �_��
-/// Date  : 2010/12/14
-/// 
-/// ����
-/// 
-///
-/// </summary>
+//Copyright © 2010- Kohei-tofu. All rights reserved.
+//koheitech001 [at] gmail.com
 
 //#include "stdafx.h"
 #include <stdio.h>
@@ -16,14 +9,7 @@
 #include "matrix.h"
 
 
-//���͂̍s�񐔂����������`�F�b�N����
 #define def_InputCheck
-
-//row    : �s
-//column : �� 
-
-//@note      �vcheck
-//�͓��얢�m�F
 
 ///
 ///Dynamically allocated
@@ -85,11 +71,11 @@ int fMat_GetMaxElement_NotDiag(_stMatrix* input, int* p, int* q, def_ElementType
 
 
 /*!
+allocate matrix space
 @param    
 @param    
 @return  
-@note     �s��̈�̔z�񕔕��m��
-@note     	//nrow:�s�Ancol:��
+@note
 */
 matrix new_matrix(int nrow, int ncol)
 {
@@ -123,11 +109,11 @@ matrix new_matrix(int nrow, int ncol)
 
 
 /*!
-
+relase matrix space
 @param    
 @param    
 @return  
-@note     �s��̈�J��
+@note 
 */
 void free_matrix(matrix a)
 {
@@ -147,11 +133,11 @@ void free_matrix(matrix a)
 
 
 /*!
-
+allocate matrix space
 @param    
 @param    
 @return  
-@note     �s��̈�m��
+@note     
 */
 _stMatrix* fMat_New(int input_row, int input_col)
 {
@@ -173,11 +159,11 @@ _stMatrix* fMat_New(int input_row, int input_col)
 
 
 /*!
-
+relase matrix space
 @param    
 @param    
 @return  
-@note     �s��̈�폜
+@note     
 */
 int fMat_Delete(_stMatrix* Mat)
 {
@@ -197,8 +183,8 @@ int fMat_Delete(_stMatrix* Mat)
 @param    
 @param    
 @return  
-@note     �s��̈抄�蓖��
-@note     ���g�p�B�o�O���邩��
+@note     
+@note     
 */
 //int fMat___dd(_stMatrix* Mat, double** point, double* valArg, int row, int col)
 //{
@@ -223,8 +209,7 @@ int fMat_Delete(_stMatrix* Mat)
 @param    
 @param    
 @return  
-@note     �s��R�s�[
-@note     �s��𕡐��i�̈�m�ہj���A�l���R�s�[����B
+@note    copy, and return it as new matrix
 */
 _stMatrix* fMat_NewCopy(_stMatrix* This)
 {
@@ -251,12 +236,11 @@ _stMatrix* fMat_NewCopy(_stMatrix* This)
 
 
 /*!
-
-@param    _stMatrix*        : �R�s�[���̃A�h���X
-@param    int input_row    : �R�s�[����s�ԍ�
+@param    _stMatrix*        : 
+@param    int input_row    : 
 @return  
-@note     �s��R�s�[
-@note     �V���ȍs����쐬�i�̈�m�ہj���A�w�肵���s�̂݃R�s�[����B
+@note     copy specific row vector on matrix, 
+@note     and return it as new vector
 */
 _stMatrix* fMat_NewCopy_rowVector(_stMatrix* This, int input_row)
 {
@@ -283,11 +267,11 @@ _stMatrix* fMat_NewCopy_rowVector(_stMatrix* This, int input_row)
 
 /*!
 
-@param    _stMatrix*        : �R�s�[���̃A�h���X
-@param    int input_col    : �R�s�[�����ԍ�
+@param    _stMatrix*        : 
+@param    int input_col    : 
 @return  
-@note     �s��R�s�[
-@note     �V���ȍs����쐬�i�̈�m�ہj���A�w�肵����̂݃R�s�[����B
+@note     copy specific col vector on matrix, 
+@note     and return it as new vector
 */
 _stMatrix* fMat_NewCopy_colVector(_stMatrix* This, int input_col)
 {
@@ -317,12 +301,11 @@ _stMatrix* fMat_NewCopy_colVector(_stMatrix* This, int input_col)
 @param    _stMatrix* output
 @param    _stMatrix* input
 @return  
-@note     �s��R�s�[
-@note     output = input �s��l�𕡐�����B�s���A�񐔂������łȂ���΂Ȃ�Ȃ�
+@note     copy input matrix to output matrix
 */
 int fMat_Copy(_stMatrix* output, _stMatrix* input)
 {
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 	int row_len = input->row;
 	int col_len = input->column;
@@ -349,10 +332,10 @@ int fMat_Copy(_stMatrix* output, _stMatrix* input)
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 
-	return lErrorCounter;
+	return count_error;
 }
 
 /*!
@@ -362,12 +345,12 @@ int fMat_Copy(_stMatrix* output, _stMatrix* input)
 @param    _stMatrix* input
 @param    int input_row
 @return  
-@note     �s��R�s�[�B�w�肵���s�̒l���w�肵���s�ɏo�͂���B�񐔁i�s�̗v�f���j�������K�v������B
-@note     �w�肵���s�ԍ����o�͐�̍s�ԍ���菬����
+@note     copy specific row vector to output matrix
+@note     
 */
 int fMat_Copy_rowVector(_stMatrix* output, int output_row, _stMatrix* input, int input_row)
 {
-	int lErrorCounter = 0;
+	int count_error = 0;
 	//_stMatrix* retAddress;
 	int row_len = input->row;
 	int col_len = input->column;
@@ -395,11 +378,11 @@ int fMat_Copy_rowVector(_stMatrix* output, int output_row, _stMatrix* input, int
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 
 
-	return lErrorCounter;
+	return count_error;
 }
 
 /*!
@@ -409,13 +392,11 @@ int fMat_Copy_rowVector(_stMatrix* output, int output_row, _stMatrix* input, int
 @param    _stMatrix* input
 @param    int input_row
 @return  
-@note     �w�肵���s�x�N�g�����w�肵���s��Add2
-@note     �񐔁i�s�̗v�f���j�������K�v������B
-@note     �w�肵���s�ԍ����o�͐�̍s�ԍ���菬����
+@note    
 */
 int fMat_Add2_rowVector(_stMatrix* output, int output_row, _stMatrix* input, int input_row)
 {
-	int lErrorCounter = 0;
+	int count_error = 0;
 	//_stMatrix* retAddress;
 	int row = input->row;
 	int col = input->column;
@@ -442,10 +423,10 @@ int fMat_Add2_rowVector(_stMatrix* output, int output_row, _stMatrix* input, int
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 
-	return lErrorCounter;
+	return count_error;
 }
 
 /*!
@@ -455,12 +436,10 @@ int fMat_Add2_rowVector(_stMatrix* output, int output_row, _stMatrix* input, int
 @param    _stMatrix* input
 @param    int input_row
 @return  
-@note     �s��R�s�[�B�w�肵����̒l���w�肵����ɏo�͂���B�s���i��̗v�f���j�������K�v������B
-@note     �w�肵����ԍ����o�͐�̗�ԍ���菬����  
 */
 int fMat_Copy_colVector(_stMatrix* output, int output_col, _stMatrix* input, int input_col)
 {
-	int lErrorCounter = 0;
+	int count_error = 0;
 	//_stMatrix* retAddress;
 	int row_len = input->row;
 	int col_len = input->column;
@@ -487,10 +466,10 @@ int fMat_Copy_colVector(_stMatrix* output, int output_col, _stMatrix* input, int
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 
-	return lErrorCounter;
+	return count_error;
 }
 
 
@@ -501,13 +480,10 @@ int fMat_Copy_colVector(_stMatrix* output, int output_col, _stMatrix* input, int
 @param    _stMatrix* input
 @param    int input_col
 @return  
-@note     �s��R�s�[�B�w�肵������w�肵���s�ɏo�͂���B��̗v�f���iinput�j�ƍs�̗v�f���ioutput�j�������K�v������B
-@note     �w�肵����ԍ����o�͐�̗�ԍ���菬����
-@note     �vcheck
 */
 int fMat_Copy_colVector_TO_row(_stMatrix* output, int output_row, _stMatrix* input, int input_col)
 {
-	int lErrorCounter = 0;
+	int count_error = 0;
 	//_stMatrix* retAddress;
 	int row_len = output->row;
 	int col_len = output->column;
@@ -534,10 +510,10 @@ int fMat_Copy_colVector_TO_row(_stMatrix* output, int output_row, _stMatrix* inp
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 
-	return lErrorCounter;
+	return count_error;
 }
 
 /*!
@@ -547,13 +523,10 @@ int fMat_Copy_colVector_TO_row(_stMatrix* output, int output_row, _stMatrix* inp
 @param    _stMatrix* input
 @param    int input_col
 @return  
-@note     �s��R�s�[�B�w�肵������w�肵���s�ɏo�͂���B��̗v�f���iinput�j�ƍs�̗v�f���ioutput�j�������K�v������B
-@note     �w�肵����ԍ����o�͐�̗�ԍ���菬����
-@note     �vcheck
 */
 int fMat_Copy_rowVector_TO_column(_stMatrix* output, int output_col, _stMatrix* input, int input_row)
 {
-	int lErrorCounter = 0;
+	int count_error = 0;
 	//_stMatrix* retAddress;
 	int row_len = output->row;
 	int col_len = output->column;
@@ -580,10 +553,10 @@ int fMat_Copy_rowVector_TO_column(_stMatrix* output, int output_col, _stMatrix* 
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 
-	return lErrorCounter;
+	return count_error;
 }
 
 /*!
@@ -593,13 +566,11 @@ int fMat_Copy_rowVector_TO_column(_stMatrix* output, int output_col, _stMatrix* 
 @param    _stMatrix* input
 @param    int input_row
 @return  
-@note     �w�肵����x�N�g�����w�肵�����Add2
-@note     �s���i��̗v�f���j�������K�v������B
-@note     �w�肵����ԍ����o�͐�̗�ԍ���菬����
+@note    
 */
 int fMat_Add2_colVector(_stMatrix* output, int output_col, _stMatrix* input, int input_col)
 {
-	int lErrorCounter = 0;
+	int count_error = 0;
 	//_stMatrix* retAddress;
 	int row = input->row;
 	int col = input->column;
@@ -625,10 +596,10 @@ int fMat_Add2_colVector(_stMatrix* output, int output_col, _stMatrix* input, int
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 
-	return lErrorCounter;
+	return count_error;
 }
 
 /*!
@@ -637,12 +608,11 @@ int fMat_Add2_colVector(_stMatrix* output, int output_col, _stMatrix* input, int
 @param    _stMatrix* input
 @param    def_ElementType_mat Multiplier
 @return  
-@note     input�ɏ搔Multiplier���������l��output�ɏo�͂���
 @note     A = kB
 */
 int fMat_Multiplier(_stMatrix* output, _stMatrix* input, def_ElementType_mat Multiplier)
 {
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 	int rowLoop,columnLoop;
 	int rowLoopMax = output->row;
@@ -664,11 +634,11 @@ int fMat_Multiplier(_stMatrix* output, _stMatrix* input, def_ElementType_mat Mul
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 
 
-	return lErrorCounter;
+	return count_error;
 }
 
 /*!
@@ -681,7 +651,7 @@ int fMat_Multiplier(_stMatrix* output, _stMatrix* input, def_ElementType_mat Mul
 */
 int fMat_Multiplier2(_stMatrix* This, def_ElementType_mat Multiplier)
 {
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 	int rowLoop,columnLoop;
 	int rowLoopMax = This->row;
@@ -700,11 +670,11 @@ int fMat_Multiplier2(_stMatrix* This, def_ElementType_mat Multiplier)
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 
 
-	return lErrorCounter;
+	return count_error;
 }
 
 
@@ -716,12 +686,11 @@ int fMat_Multiplier2(_stMatrix* This, def_ElementType_mat Multiplier)
 @param    int input_row
 @param    def_ElementType_mat Multiplier
 @return  
-@note     input�̎w�肵���s�x�N�g���ɏ搔Multiplier���������l��output�̎w�肵���s�x�N�g���ɏo�͂���
 @note     A = kA
 */
 int fMat_Multiplier_rowVector(_stMatrix* output, int output_row, _stMatrix* input, int input_row, def_ElementType_mat Multiplier)
 {
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 	int columnLoop;//rowLoop,
 	int rowLoopMax = output->row;
@@ -744,10 +713,10 @@ int fMat_Multiplier_rowVector(_stMatrix* output, int output_row, _stMatrix* inpu
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 
-	return lErrorCounter;
+	return count_error;
 }
 
 
@@ -756,12 +725,11 @@ int fMat_Multiplier_rowVector(_stMatrix* output, int output_row, _stMatrix* inpu
 @param    _stMatrix* This
 @param    def_ElementType_mat Multiplier
 @return  
-@note     This�̎w�肵���s�x�N�g���ɏ搔Multiplier���������l��This�ɏo�͂���
 @note     A = kA
 */
 int fMat_Multiplier2_rowVector(_stMatrix* This, int output_row, def_ElementType_mat Multiplier)
 {
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 	int columnLoop;//rowLoop,
 	int rowLoopMax = This->row;
@@ -782,10 +750,10 @@ int fMat_Multiplier2_rowVector(_stMatrix* This, int output_row, def_ElementType_
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 
-	return lErrorCounter;
+	return count_error;
 }
 
 
@@ -798,12 +766,11 @@ int fMat_Multiplier2_rowVector(_stMatrix* This, int output_row, def_ElementType_
 @param    int input_row
 @param    def_ElementType_mat Multiplier
 @return  
-@note     input�̎w�肵����x�N�g���ɏ搔Multiplier���������l��output�̎w�肵����x�N�g���ɏo�͂���
 @note     A = kA
 */
 int fMat_Multiplier_colVector(_stMatrix* output, int output_col, _stMatrix* input, int input_col, def_ElementType_mat Multiplier)
 {
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 	int rowLoop;//,columnLoop;
 	int rowLoopMax = output->row;
@@ -826,10 +793,10 @@ int fMat_Multiplier_colVector(_stMatrix* output, int output_col, _stMatrix* inpu
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 
-	return lErrorCounter;
+	return count_error;
 }
 
 
@@ -838,12 +805,11 @@ int fMat_Multiplier_colVector(_stMatrix* output, int output_col, _stMatrix* inpu
 @param    _stMatrix* This
 @param    def_ElementType_mat Multiplier
 @return  
-@note     This�̎w�肵����x�N�g���ɏ搔Multiplier���������l��This�ɏo�͂���
 @note     A = kA
 */
 int fMat_Multiplier2_colVector(_stMatrix* This, int output_col, def_ElementType_mat Multiplier)
 {
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 	int rowLoop;//,columnLoop;
 	int rowLoopMax = This->row;
@@ -864,10 +830,10 @@ int fMat_Multiplier2_colVector(_stMatrix* This, int output_col, def_ElementType_
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 
-	return lErrorCounter;
+	return count_error;
 }
 
 
@@ -875,12 +841,11 @@ int fMat_Multiplier2_colVector(_stMatrix* This, int output_col, def_ElementType_
 
 @param    _stMatrix* This
 @return  
-@note     �w�肵���s���0�s��ɂ���
 @note     A = 0
 */
 int fMat_Zero(_stMatrix* This)
 {
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 	int rowLoop,columnLoop;
 	int rowLoopMax = This->row;
@@ -894,18 +859,17 @@ int fMat_Zero(_stMatrix* This)
 		}
 	}
 
-	return lErrorCounter;
+	return count_error;
 }
 /*!
 
 @param    _stMatrix* This
 @return  
-@note     �w�肵���s��̗v�f�S�Ăɒ萔����������
-@note     A = I
+@note     A = C
 */
 int fMat_SetConst(_stMatrix* This, def_ElementType_mat input)
 {
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 	int rowLoop,columnLoop;
 	int rowLoopMax = This->row;
@@ -919,7 +883,7 @@ int fMat_SetConst(_stMatrix* This, def_ElementType_mat input)
 		}
 	}
 
-	return lErrorCounter;
+	return count_error;
 }
 
 /*!
@@ -928,11 +892,10 @@ int fMat_SetConst(_stMatrix* This, def_ElementType_mat input)
 @return  
 @note     �w�肵���s���P�ʍs��ɂ���
 @note     A = I
-@note     �����s��ł���K�v����������B�i���̐����͂Ȃ��Ă��悢��������Ȃ��j
 */
 int fMat_UnitMatrix(_stMatrix* This)
 {
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 	int rowLoop,columnLoop;
 	int rowLoopMax = This->row;
@@ -959,10 +922,10 @@ int fMat_UnitMatrix(_stMatrix* This)
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 
-	return lErrorCounter;
+	return count_error;
 }
 
 //�̈�̓���ւ����s��˂΂Ȃ�Ȃ��̂Ŗʓ|�����B
@@ -996,13 +959,12 @@ void fMat_Add_rou(matrix c,matrix a, matrix b,int rowLoopMax,int colLoopMax)
 @param    _stMatrix* B
 @param    _stMatrix* C
 @return  
-@note     �s��̘a���o��
 @note     Add C = A + B
 @note     ab  ab = ab
 */
 int fMat_Add(_stMatrix* C,_stMatrix* A,_stMatrix* B)
 {
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 	int rowLoop,columnLoop;
 
@@ -1029,11 +991,11 @@ int fMat_Add(_stMatrix* C,_stMatrix* A,_stMatrix* B)
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 
 
-	return lErrorCounter;
+	return count_error;
 }
 
 
@@ -1043,13 +1005,12 @@ int fMat_Add(_stMatrix* C,_stMatrix* A,_stMatrix* B)
 @param    _stMatrix* A
 @param    _stMatrix* B
 @return  
-@note     �s��̘a���o��
 @note     Add A += B
 */
 int fMat_Add2(_stMatrix* A,_stMatrix* B)
 {
 	int rowLoop,columnLoop;
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 	int rowLoopMax = A->row;
 	int colLoopMax = A->column;
@@ -1072,10 +1033,10 @@ int fMat_Add2(_stMatrix* A,_stMatrix* B)
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 
-	return lErrorCounter;
+	return count_error;
 }
 
 
@@ -1086,7 +1047,6 @@ int fMat_Add2(_stMatrix* A,_stMatrix* B)
 @param    _stMatrix* B
 @param    _stMatrix* C
 @return  
-@note     �s��̍����o��
 @note     Add C = A - B
 @note     ab  ab = ab
 
@@ -1094,7 +1054,7 @@ int fMat_Add2(_stMatrix* A,_stMatrix* B)
 int fMat_Sub(_stMatrix* C,_stMatrix* A,_stMatrix* B)
 {
 	int rowLoop,columnLoop;
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 	int rowLoopMax = A->row;
 	int colLoopMax = A->column;
@@ -1118,26 +1078,22 @@ int fMat_Sub(_stMatrix* C,_stMatrix* A,_stMatrix* B)
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
-	return lErrorCounter;
+	return count_error;
 }
 
 
-
-
 /*!
-
 @param    _stMatrix* A
 @param    _stMatrix* B
 @return  
-@note     �s��̍����o��
 @note     Add A -= B
 */
 int fMat_Sub2(_stMatrix* A,_stMatrix* B)
 {
 	int rowLoop,columnLoop;
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 	int rowLoopMax = A->row;
 	int colLoopMax = A->column;
@@ -1159,23 +1115,22 @@ int fMat_Sub2(_stMatrix* A,_stMatrix* B)
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 
-	return lErrorCounter;
+	return count_error;
 }
 
 /*!
 Check_Symmetric Matrix
 @param    _stMatrix* A
 @return   error counter
-@note     �Ώ̍s�񂩂ǂ���check����B
-@note     �Ώ̍s��łȂ��ꍇ�A�����͐����s��łȂ��ꍇ�ɂ̓G���[S
+@note     Check symmetricity on matrix
 */
 int fMat_Check_SymmetricMatrix(_stMatrix* A)
 {
 	int rowLoop,columnLoop;
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 	int rowLoopMax = A->row;
 	int colLoopMax = A->column;
@@ -1204,18 +1159,18 @@ int fMat_Check_SymmetricMatrix(_stMatrix* A)
 			{
 				if(fMat(A, rowLoop, columnLoop) != fMat(A, columnLoop, rowLoop))
 				{
-					lErrorCounter++;
+					count_error++;
 				}
 			}
 		}
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 
 
-	return lErrorCounter;
+	return count_error;
 }
 
 /*!
@@ -1224,14 +1179,13 @@ int fMat_Check_SymmetricMatrix(_stMatrix* A)
 @param    _stMatrix* B
 @param    _stMatrix* C
 @return  
-@note     �s��̊|���Z
 @note     Mlt C = AB
 @note     am * mb = ab
 */
 int fMat_Mlt(_stMatrix* C,_stMatrix* A,_stMatrix* B)
 {
 	int rowLoop,columnLoop,multiLoop;
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 	int rowLoopMax = A->row;
 	int colLoopMax = B->column;
@@ -1261,10 +1215,10 @@ int fMat_Mlt(_stMatrix* C,_stMatrix* A,_stMatrix* B)
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 
-	return lErrorCounter;
+	return count_error;
 }
 
 
@@ -1274,14 +1228,13 @@ int fMat_Mlt(_stMatrix* C,_stMatrix* A,_stMatrix* B)
 @param    _stMatrix* B
 @param    _stMatrix* C
 @return  
-@note     �]�u�s��̊|���Z
 @note     Mlt C = ABt
 @note     am * bm = ab
 */
 int fMat_MltTrans(_stMatrix* C, _stMatrix* A, _stMatrix* B)
 {
 	int rowLoop,columnLoop,multiLoop;
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 	int rowLoopMax = A->row;//a
 	int colLoopMax = B->row;//b
@@ -1312,11 +1265,11 @@ int fMat_MltTrans(_stMatrix* C, _stMatrix* A, _stMatrix* B)
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 	
 
-	return lErrorCounter;
+	return count_error;
 }
 
 /*!
@@ -1325,7 +1278,6 @@ int fMat_MltTrans(_stMatrix* C, _stMatrix* A, _stMatrix* B)
 @param    _stMatrix* B
 @param    _stMatrix* C
 @return  
-@note     �]�u�s��̊|���Z
 @note     Mlt C = AtB
 @note     ma * mb = ab
 @note     �vcheck
@@ -1333,7 +1285,7 @@ int fMat_MltTrans(_stMatrix* C, _stMatrix* A, _stMatrix* B)
 int fMat_TransMlt(_stMatrix* C, _stMatrix* A, _stMatrix* B)
 {
 	int rowLoop,columnLoop,multiLoop;
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 	int rowLoopMax = A->column;//a
 	int colLoopMax = B->column;//b
@@ -1364,11 +1316,11 @@ int fMat_TransMlt(_stMatrix* C, _stMatrix* A, _stMatrix* B)
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 	
 
-	return lErrorCounter;
+	return count_error;
 }
 
 /*!
@@ -1377,16 +1329,11 @@ int fMat_TransMlt(_stMatrix* C, _stMatrix* A, _stMatrix* B)
 @param     _stMatrix* D
 @param     _stMatrix* input
 @return  
-@note      UD���� input �� UD
-@note      ���p�J���}���t�B���^ p171
-@note      �Ίp�s��쐬��
+@note      UD input UD
 */
 int fMat_UD_Degradation(_stMatrix* U, _stMatrix* D, _stMatrix* input)
 {
-	//D�͂���Ȃ�����
-	//2version�쐬����H
-
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 	int row_input = input->row;
 	int col_input = input->column;
@@ -1407,7 +1354,6 @@ int fMat_UD_Degradation(_stMatrix* U, _stMatrix* D, _stMatrix* input)
 	if(true)
 #endif
 	{
-		//UD����
 		for(i_loop = row_input - 1; i_loop >= 0; i_loop--)
 		{
 			fMat(D, i_loop, i_loop) = fMat(input, i_loop, i_loop);
@@ -1433,23 +1379,22 @@ int fMat_UD_Degradation(_stMatrix* U, _stMatrix* D, _stMatrix* input)
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 
-	return lErrorCounter;
+	return count_error;
 }
 
 /*!
 
 @param    _stMatrix* Output   :  A^-1
 @param    _stMatrix* Input    :  A
-@return   error��
-@note     �|���o���@�ɂ��t�s����v�Z����B
-@note     �����s��ł���Ƃ���������t��������ׂ�����
+@return   error
+@note     inverse matrix by gauss method
 */
 int fMat_InverseMatrix_Gauss(_stMatrix* Output, _stMatrix* Input)
 {
-	int lErrorCounter = 0;
+	int count_error = 0;
 	int row_input = Input->row;
 	int col_input = Input->column;
 
@@ -1468,7 +1413,6 @@ int fMat_InverseMatrix_Gauss(_stMatrix* Output, _stMatrix* Input)
 	if(true)
 #endif
 	{
-		//�P�ʍs��̍쐬
 		fMat_UnitMatrix(Output);
 
 		//
@@ -1508,24 +1452,21 @@ int fMat_InverseMatrix_Gauss(_stMatrix* Output, _stMatrix* Input)
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 
-	return lErrorCounter;
+	return count_error;
 }
 
 /*!
-
 @param    _stMatrix* Output  : A^-1
 @param    _stMatrix* Input   : A
-@return   error��
-@note     input�̃R���X�L�[������output�ɏo�͂���
-@note	  �֐����œ��͍s��input���ω�����̂Œ���
-@note	  �֐����ŕ�������p����iC�̏ꍇ��Math.h�AC++/CLI��namespace System���K�v
+@return   error
+@note     Cholesky Decomposition
 */
 int fMat_CholeskyDecomposition(_stMatrix* Output, _stMatrix* Input)
 {
-	int lErrorCounter = 0;
+	int count_error = 0;
 	int row_input = Input->row;
 	int col_input = Input->column;
 
@@ -1548,21 +1489,16 @@ int fMat_CholeskyDecomposition(_stMatrix* Output, _stMatrix* Input)
 
 		for(k_loop = (col_input - 1);k_loop > 0;k_loop--)
 		{
-			//(8.13���j
 			//Output, k_loop][k_loop] = fCal_Sqrt(Input, k_loop][k_loop]);
 			fMat(Output, k_loop, k_loop) = fCal_Sqrt(fMat(Input, k_loop, k_loop));
 
-			//j_loop�̎g�����ɒ���(k_loop�Ŋ��ɂƂ肤��l�����߂Ă���
 			for(j_loop = 0;j_loop < (k_loop - 0); j_loop++)
 			{
-				//(8.14���j
 				//Output, j_loop][k_loop] = Input, j_loop][k_loop] / Output, k_loop][k_loop];
 				fMat(Output, j_loop, k_loop) = fMat(Input, j_loop, k_loop) / fMat(Output, k_loop, k_loop);
 
-				//i_loop�̎g�����ɒ���
 				for(i_loop = 0;i_loop <= j_loop;i_loop++)
 				{
-					//(8.15���j
 					//Input, i_loop][j_loop] = Input, i_loop][j_loop] - Output, i_loop][k_loop] * Output, j_loop][k_loop];
 					fMat(Input, i_loop, j_loop) = fMat(Input, i_loop, j_loop) - fMat(Output, i_loop, k_loop) * fMat(Output, j_loop, k_loop);
 				}
@@ -1575,10 +1511,10 @@ int fMat_CholeskyDecomposition(_stMatrix* Output, _stMatrix* Input)
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 
-	return lErrorCounter;
+	return count_error;
 }
 
 
@@ -1590,11 +1526,10 @@ int fMat_CholeskyDecomposition(_stMatrix* Output, _stMatrix* Input)
 @param    int input_col
 @param    _stMatrix* This
 @return  
-@note     �w�肵���s��ɒl���i�[����B
 */
 int fMat_Set(_stMatrix* This, int input_row, int input_col, def_ElementType_mat input)
 {
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 #ifdef  def_InputCheck	
 	if((input_row < This->row)
@@ -1608,10 +1543,10 @@ int fMat_Set(_stMatrix* This, int input_row, int input_col, def_ElementType_mat 
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 
-	return lErrorCounter;
+	return count_error;
 }
 
 /*!
@@ -1620,7 +1555,7 @@ int fMat_Set(_stMatrix* This, int input_row, int input_col, def_ElementType_mat 
 @param    int input_col
 @param    _stMatrix* This
 @return  
-@note     �w�肵���s��̗v�f���擾����
+@note     
 */
 def_ElementType_mat fMat_Get(_stMatrix* This, int input_row, int input_col)
 {
@@ -1649,7 +1584,7 @@ def_ElementType_mat fMat_Get(_stMatrix* This, int input_row, int input_col)
 @param    int input_row
 @param    _stMatrix* This
 @return  
-@note     �w�肵���s��̑Ίp�v�f���擾����
+@note     
 */
 def_ElementType_mat fMat_GetDiag(_stMatrix* This, int input_row)
 {
@@ -1677,7 +1612,6 @@ def_ElementType_mat fMat_GetDiag(_stMatrix* This, int input_row)
 @param     _stMatrix* output
 @param     _stMatrix* input
 @return  
-@note      �]�u�s��
 @note      A = Bt
 @note      �vcheck
 */
@@ -1685,7 +1619,7 @@ int fMat_Transpose(_stMatrix* output, _stMatrix* input)
 {
 	int rowLoop = 0;
 	int columnLoop = 0;
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 	int row = output->row;
 	int col = output->column;
@@ -1710,10 +1644,10 @@ int fMat_Transpose(_stMatrix* output, _stMatrix* input)
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 	
-	return lErrorCounter;
+	return count_error;
 }
 
 
@@ -1722,16 +1656,13 @@ int fMat_Transpose(_stMatrix* output, _stMatrix* input)
 @param     int* p
 @param     int* q
 @return  
-@note      �Ώ̍s���Ίp�v�f�̍ő�v�f�i��Βl�j��T��
-@note      jacobi�@�Ɏg�p����
-@note      (p,q)�ɗv�f�ԍ����i�[
-@note      �Ώ̍s��ł���΍H�v�����ق���������
+@note      
 */
 int fMat_GetMaxElement_NotDiag(_stMatrix* input, int* p, int* q, def_ElementType_mat* max)
 {
 	int rowLoop = 0;
 	int columnLoop = 0;
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 	int row = input->row;
 	int col = input->column;
@@ -1769,7 +1700,7 @@ int fMat_GetMaxElement_NotDiag(_stMatrix* input, int* p, int* q, def_ElementType
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 
 		*max = lMax;
 		*p = 0;
@@ -1778,7 +1709,7 @@ int fMat_GetMaxElement_NotDiag(_stMatrix* input, int* p, int* q, def_ElementType
 
 	
 	
-	return lErrorCounter;
+	return count_error;
 }
 
 
@@ -1786,8 +1717,7 @@ int fMat_GetMaxElement_NotDiag(_stMatrix* input, int* p, int* q, def_ElementType
 @param     _stMatrix* A
 @param     _stMatrix* B
 @return  
-@note     ���όv�Z
-@note     (n,1)T (n,1)�s��̓���
+@note     get inner product
 */
 def_ElementType_mat fMat_InnerProduct(_stMatrix* A, _stMatrix* B)
 {
@@ -1795,7 +1725,7 @@ def_ElementType_mat fMat_InnerProduct(_stMatrix* A, _stMatrix* B)
 
 	int rowLoop = 0;
 	//int columnLoop = 0;
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 	int row = A->row;
 	//int col = A->column;
@@ -1818,7 +1748,7 @@ def_ElementType_mat fMat_InnerProduct(_stMatrix* A, _stMatrix* B)
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 
 	return ret;
@@ -1829,36 +1759,31 @@ def_ElementType_mat fMat_InnerProduct(_stMatrix* A, _stMatrix* B)
 @param     _stMatrix* A
 @param     _stMatrix* B
 @return  
-@note     ���ύs��̌v�Z
+@note     inner matrix
 */
 int fMat_InnerMatrix(_stMatrix* C, _stMatrix* A, _stMatrix* B)
 {
-	int lErrorCounter = 0;
+	int count_error = 0;
 
-	lErrorCounter++;
+	count_error++;
 
-	return lErrorCounter;
+	return count_error;
 }
 
-///*------------------------------------------------------------------*///
-///���ӁF�֐����ŗ̈�m�ہA�J�����s���Ă���
-///*------------------------------------------------------------------*///
 
 /*!
 
 @param    _stMatrix* A
 @param    _stMatrix* B
 @return  
-@note     �s��̊|���Z���o��
 @note     MLT2 A = AB (am mb = ab)
-@note     �vcheck
 */
 int fMat_Mlt2(_stMatrix* A, _stMatrix* B)
 {
 	int rowLoop = 0;
 	int columnLoop = 0;
 	int multiLoop = 0;
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 	int row = A->row;
 	int col = B->column;
@@ -1875,7 +1800,6 @@ int fMat_Mlt2(_stMatrix* A, _stMatrix* B)
 	if(true)
 #endif
 	{
-		//�̈�m��
 		_stMatrix* Mataddress = fMat_New(row, col);
 		matrix lTemp_Mat;
 	
@@ -1891,28 +1815,24 @@ int fMat_Mlt2(_stMatrix* A, _stMatrix* B)
 				}
 			}
 		}
-		//���u��
 		lTemp_Mat = A->Mat;
 
-		//��������
 		A->Mat = Mataddress->Mat;
 		A->row = row;
 		A->column = col;
 
-		//����ւ�
 		Mataddress->Mat = lTemp_Mat;
 
-		//�J��
 		fMat_Delete(Mataddress);
 
 		
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 	
-	return lErrorCounter;
+	return count_error;
 }
 
 /*!
@@ -1920,7 +1840,6 @@ int fMat_Mlt2(_stMatrix* A, _stMatrix* B)
 @param    _stMatrix* A
 @param    _stMatrix* B
 @return   
-@note     �vcheck �o�O����?
 @note     A = A * Bt (am bm = ab)
 */
 int fMat_MltTrans2(_stMatrix* A, _stMatrix* B)
@@ -1928,7 +1847,7 @@ int fMat_MltTrans2(_stMatrix* A, _stMatrix* B)
 	int rowLoop = 0;
 	int columnLoop = 0;
 	int multiLoop = 0;
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 	int row = A->row;
 	int col = B->row;
@@ -1945,7 +1864,6 @@ int fMat_MltTrans2(_stMatrix* A, _stMatrix* B)
 	if(true)
 #endif
 	{
-		//�̈�m��
 		_stMatrix* Mataddress = fMat_New(row, col);
 		matrix lTemp_Mat;
 	
@@ -1962,26 +1880,22 @@ int fMat_MltTrans2(_stMatrix* A, _stMatrix* B)
 			}
 		}
 
-		//���u��
 		lTemp_Mat = A->Mat;
 
-		//��������
 		A->Mat = Mataddress->Mat;
 		A->row = row;
 		A->column = col;
 
-		//����ւ�
 		Mataddress->Mat = lTemp_Mat;
 
-		//�J��
 		fMat_Delete(Mataddress);
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 	
-	return lErrorCounter;
+	return count_error;
 }
 
 
@@ -1992,16 +1906,13 @@ int fMat_MltTrans2(_stMatrix* A, _stMatrix* B)
 @param     _stMatrix* This
 @param    
 @return  
-@note      �]�u�s��
-@note      �V���ȗ̈���쐬���A���̃|�C���^����J���A���̌�|�C���^�����ւ���
 @note      A = At
-@note      �vcheck 
 */
 int fMat_Transpose2(_stMatrix* This)
 {
 	int rowLoop = 0;
 	int columnLoop = 0;
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 	int row = This->column;
 	int col = This->row;
@@ -2019,35 +1930,28 @@ int fMat_Transpose2(_stMatrix* This)
 		}
 	}
 
-	//���u��
 	lTemp_Mat = This->Mat;
 
-	//�u������
 	This->Mat = Mataddress->Mat;
 	This->row = row;
 	This->column = col;
 
-	//����ւ�
 	Mataddress->Mat = lTemp_Mat;
 
-	//�J��
 	fMat_Delete(Mataddress);
 	
-	return lErrorCounter;
+	return count_error;
 }
 
 /*!
 
 @param    _stMatrix* Input   :  A^-1
-@return   error��
-@note     �K�E�X�̏����@�ɂ��t�s����v�Z����B
-@note     ���I�m�ۂ��s��
+@return   error
 @note     A = A^-1
-@note     �����s��ł���Ƃ���������t��������ׂ�����
 */
 int fMat_InverseMatrix_Gauss2(_stMatrix* Input)
 {
-	int lErrorCounter = 0;
+	int count_error = 0;
 	int row_input = Input->row;
 	int col_input = Input->column;
 
@@ -2115,26 +2019,20 @@ int fMat_InverseMatrix_Gauss2(_stMatrix* Input)
 				}
 			}
 		}
-		//���u��
 		lTemp_Mat = Input->Mat;
 
-		//�|�C���^������������
 		Input->Mat = Mataddress->Mat;
 
-		//����ւ�
 		Mataddress->Mat = lTemp_Mat;
 
-		//�J��
 		fMat_Delete(Mataddress);
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
 
-	//fMat_Delete(Mataddress);
-
-	return lErrorCounter;
+	return count_error;
 }
 
 /*!
@@ -2142,7 +2040,6 @@ int fMat_InverseMatrix_Gauss2(_stMatrix* Input)
 @param    _stMatrix* A
 @param    _stMatrix* B
 @return  
-@note     �]�u�s��̊|���Z
 @note     Mlt A = AtB
 @note     ma * mb = ab
 @note     �vcheck
@@ -2150,7 +2047,7 @@ int fMat_InverseMatrix_Gauss2(_stMatrix* Input)
 int fMat_TransMlt2(_stMatrix* A, _stMatrix* B)
 {
 	int rowLoop,columnLoop,multiLoop;
-	int lErrorCounter = 0;
+	int count_error = 0;
 
 	int rowLoopMax = A->column;//a
 	int colLoopMax = B->column;//b
@@ -2165,7 +2062,6 @@ int fMat_TransMlt2(_stMatrix* A, _stMatrix* B)
 	if(true)
 #endif
 	{
-		//�̈�m��
 		_stMatrix* Mataddress = fMat_New(rowLoopMax, colLoopMax);
 		matrix lTemp_Mat;
 
@@ -2182,25 +2078,21 @@ int fMat_TransMlt2(_stMatrix* A, _stMatrix* B)
 			}
 		}
 
-		//���u��
 		lTemp_Mat = A->Mat;
 
-		//��������
 		A->Mat = Mataddress->Mat;
 		A->row = rowLoopMax;
 		A->column = colLoopMax;
 
-		//����ւ�
 		Mataddress->Mat = lTemp_Mat;
 
-		//�J��
 		fMat_Delete(Mataddress);
 	}
 	else
 	{
-		lErrorCounter++;
+		count_error++;
 	}
-	return lErrorCounter;
+	return count_error;
 }
 
 
@@ -2210,8 +2102,6 @@ int fMat_TransMlt2(_stMatrix* A, _stMatrix* B)
 @param    _stMatrix* B
 @param    _stMatrix* C
 @return  
-@note     �s��̊|���Z
 @note     Mlt A = ABAt
 @note     ab * bb * ba = aa
-@note     �쐬�\��
 */
