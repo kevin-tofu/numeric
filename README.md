@@ -2,7 +2,8 @@
 # Matrix computation and operation in C
 ## Features
  1. This is a simple implementation of matrix computation and opearation.  
- 2. can choose numeric data type, double or float.
+ 2. can choose numeric data type (ex. double or float.).  
+ 3. It almost does NOT rely on the other libraries, it's light.  
 
 
 ## How to use  
