@@ -38,7 +38,6 @@ element_value = fMat(matrix, row_access, col_access)
 fMat_UnitMatrix(matrix);
 fMat_SetConst(matrix, 3);
 fMat_Zero(matrix);
-fMat_UnitMatrix(matrix);
 ```
 
 * How to multiply A matrix with B matrix is (C = AB),
