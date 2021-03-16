@@ -55,6 +55,11 @@ fMat_Mlt(C1, A, B);
 C2 = fMat_Mlt2(A, B);
 ```
 
+* How to get inverse matrix is,
+```
+_stMatrix* A = fMat_New(3, 3);
+_stMatrix* A_inv = fMat_InverseMatrix_Gauss2(A);
+```
 
 * How to release memories on matrix is,
 ```
@@ -70,7 +75,7 @@ fMat_Delete(matrix);
 ### Functions
 |Function name|Explanations|Arguments|
 |:---|:---|:---|
-|fKalmanSmoothing_New|dynamically allocate structure data on memory for computing kalmansmoother process, and initialize thoes values.|int, int : dimention of state and measurement|
-|fKalmanSmoothing_Initialize|initialize values on data.|_stKalmanSmoothing*|
-|fKalmanSmoothing_Delete| release allocated memories.|_stKalmanSmoothing*|
-|fKalmanSmoothing_Run| Execute smoothing process at the time [t]. <br> if you are going to get all prediction, need to run this process repeatedly. |_stKalmanSmoothing*|
+||||
+||||
+||||
+||||
