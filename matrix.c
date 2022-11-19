@@ -1,4 +1,4 @@
-//Copyright © 2010- Kohei-tofu. All rights reserved.
+//Copyright © 2010- kevin-tofu. All rights reserved.
 //koheitech001 [at] gmail.com
 
 //#include "stdafx.h"
